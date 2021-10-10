@@ -4,7 +4,7 @@
 # Date: 10/10/21
 # Description Onboard code for Raspberry Pi Running inside personality robot constructed over october break 2021
 
-import gpiozero
+import gpiozero as gpio
 import time
 import sys
 
@@ -13,7 +13,7 @@ import sys
 
 ## Input ##
 # Button #
-headButton = button("BOARD37")
+headButton = gpio.button("BOARD37")
 # IR #
 FrontIR  = MotionSensor("BOARD16")
 BottomIR = MotionSensor("BOARD18")
