@@ -1,16 +1,29 @@
-# This is a sample Python script.
+# Project Name: MDRCBot
+# Author: Cameron Robinson
+# Email: cvr8924@rit.edu
+# Date: 10/10/21
+# Description Onboard code for Raspberry Pi Running inside personality robot constructed over october break 2021
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import gpiozero
+import time
+import sys
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+
+def happy_behavior():
+    print("happy")
+
+def angry_behavior():
+    print("angry")
+
+def sleep_behavior():
+    print("sleep")
+
+def idle_behavior():
+    print("idle")
 
 
-# Press the green button in the gutter to run the script.
+# Main: Executes at runtime
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    print("Start Up")
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
