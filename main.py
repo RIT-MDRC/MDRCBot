@@ -8,6 +8,29 @@ import gpiozero
 import time
 import sys
 
+########################################
+### Declarations ###
+
+## Input ##
+# Button #
+headButton = button("BOARD37")
+# IR #
+FrontIR  = MotionSensor("BOARD16")
+BottomIR = MotionSensor("BOARD18")
+
+## Output ##
+# LED #
+leftRedLed = led("BOARD7")
+leftWhiteLed = led("BOARD11")
+rightRedLed = led("BOARD13")
+rightWhiteLed = led("BOARD15")
+# Servo #
+rightArmServo = AngularServo("BOARD29")
+leftArmServo = AngularServo("BOARD31")
+eyesServo = AngularServo("BOARD33")
+# Speaker
+speaker = TonalBuzzer("BOARD22")
+########################################
 
 
 def happy_behavior():
