@@ -13,23 +13,23 @@ import sys
 
 ## Input ##
 # Button #
-headButton = Button("BOARD37")
+headButton = gpio.Button("BOARD37")
 # IR #
-FrontIR  = MotionSensor("BOARD16")
-BottomIR = MotionSensor("BOARD18")
+FrontIR  = gpio.MotionSensor("BOARD16")
+BottomIR = gpio.MotionSensor("BOARD18")
 
 ## Output ##
 # LED #
-leftRedLed = LED("BOARD7")
-leftWhiteLed = LED("BOARD11")
-rightRedLed = LED("BOARD13")
-rightWhiteLed = LED("BOARD15")
+leftRedLed = gpio.LED("BOARD7")
+leftWhiteLed = gpio.LED("BOARD11")
+rightRedLed = gpio.LED("BOARD13")
+rightWhiteLed = gpio.LED("BOARD15")
 # Servo #
-rightArmServo = AngularServo("BOARD29")
-leftArmServo = AngularServo("BOARD31")
-eyesServo = AngularServo("BOARD33")
+rightArmServo = gpio.AngularServo("BOARD29")
+leftArmServo = gpio.AngularServo("BOARD31")
+eyesServo = gpio.AngularServo("BOARD33")
 # Speaker
-speaker = TonalBuzzer("BOARD22")
+speaker = gpio.TonalBuzzer("BOARD22")
 ########################################
 
 
