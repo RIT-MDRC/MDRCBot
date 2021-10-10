@@ -25,9 +25,9 @@ leftWhiteLed = gpio.LED("BOARD11")
 rightRedLed = gpio.LED("BOARD13")
 rightWhiteLed = gpio.LED("BOARD15")
 # Servo #
-rightArmServo = gpio.AngularServo("BOARD29")
-leftArmServo = gpio.AngularServo("BOARD31")
-eyesServo = gpio.AngularServo("BOARD33")
+#rightArmServo = gpio.AngularServo("BOARD29")
+#leftArmServo = gpio.AngularServo("BOARD31")
+#eyesServo = gpio.AngularServo("BOARD33")
 # Speaker
 speaker = gpio.TonalBuzzer("BOARD22")
 ########################################
