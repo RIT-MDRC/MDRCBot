@@ -35,6 +35,8 @@ speaker = TonalBuzzer("BOARD22")
 
 def happy_behavior():
     print("happy")
+    leftWhiteLed.on()
+    rightWhiteLed.on()
 
 def angry_behavior():
     print("angry")
@@ -48,5 +50,5 @@ def idle_behavior():
 
 # Main: Executes at runtime
 if __name__ == '__main__':
-    print("Start Up")
+    happy_behavior()
 
