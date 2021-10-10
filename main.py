@@ -29,7 +29,7 @@ rightWhiteLed = gpio.LED("BOARD15")
 #leftArmServo = gpio.AngularServo("BOARD31")
 #eyesServo = gpio.AngularServo("BOARD33")
 # Speaker
-speaker = gpio.TonalBuzzer("BOARD22")
+#speaker = gpio.TonalBuzzer("BOARD22")
 ########################################
 
 
