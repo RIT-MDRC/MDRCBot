@@ -13,17 +13,17 @@ import sys
 
 ## Input ##
 # Button #
-headButton = gpio.button("BOARD37")
+headButton = Button("BOARD37")
 # IR #
 FrontIR  = MotionSensor("BOARD16")
 BottomIR = MotionSensor("BOARD18")
 
 ## Output ##
 # LED #
-leftRedLed = led("BOARD7")
-leftWhiteLed = led("BOARD11")
-rightRedLed = led("BOARD13")
-rightWhiteLed = led("BOARD15")
+leftRedLed = LED("BOARD7")
+leftWhiteLed = LED("BOARD11")
+rightRedLed = LED("BOARD13")
+rightWhiteLed = LED("BOARD15")
 # Servo #
 rightArmServo = AngularServo("BOARD29")
 leftArmServo = AngularServo("BOARD31")
