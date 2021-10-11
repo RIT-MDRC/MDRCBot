@@ -49,11 +49,15 @@ def sleep_behavior():
     print("sleep")
 
     # Shutdown tone
-    speaker.play(gpio.tones.Tone(midi=52))
+    speaker.play(gpio.tones.Tone(midi=40))
     sleep(0.5)
-    speaker.play(gpio.tones.Tone(midi=50))
+    speaker.play(gpio.tones.Tone(midi=36))
     sleep(0.5)
-    speaker.play(gpio.tones.Tone(midi=48))
+    speaker.play(gpio.tones.Tone(midi=32))
+    sleep(0.5)
+    speaker.play(gpio.tones.Tone(midi=36))
+    sleep(0.5)
+    speaker.play(gpio.tones.Tone(midi=32))
     sleep(0.5)
 
     # Shut Downs:
@@ -71,6 +75,21 @@ def sleep_behavior():
 
 def idle_behavior():
     print("idle")
+
+    # Set Values
+    rightWhiteLed.on()
+    leftWhiteLed.on()
+
+    #DECIDE: Do we want to hold a position?
+    rightArmServo.value = None
+    leftArmServo.value = None
+    eyesServo.value = None
+
+    # Shut Downs
+    speaker.stop()
+
+    rightRedLed.off()
+    leftRedLed.off()
 
 
 def test_behavior():  # test routine, should never run in main program ~CR
@@ -100,4 +119,3 @@ if __name__ == '__main__':
     while True:
         print(headButton.value)
         sleep_behavior()
-
