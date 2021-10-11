@@ -13,7 +13,7 @@ import sys
 
 ## Input ##
 # Button #
-headButton = gpio.button("BOARD37")
+headButton = gpio.Button("BOARD37")
 # IR #
 FrontIR = gpio.MotionSensor("BOARD16")
 BottomIR = gpio.MotionSensor("BOARD18")
