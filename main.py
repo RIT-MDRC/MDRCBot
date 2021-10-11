@@ -118,4 +118,5 @@ def test_behavior():  # test routine, should never run in main program ~CR
 if __name__ == '__main__':
     while True:
         print(headButton.value)
-        sleep_behavior()
+        sleep(1)
+        #sleep_behavior()
