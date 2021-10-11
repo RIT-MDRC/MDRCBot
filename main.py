@@ -25,37 +25,56 @@ leftWhiteLed = gpio.LED("BOARD11")
 rightRedLed = gpio.LED("BOARD13")
 rightWhiteLed = gpio.LED("BOARD15")
 
-
 # Servo #
-# rightArmServo = gpio.AngularServo("BOARD29")
-# leftArmServo = gpio.AngularServo("BOARD31")
-# eyesServo = gpio.AngularServo("BOARD33")
+rightArmServo = gpio.AngularServo("BOARD29")
+leftArmServo = gpio.AngularServo("BOARD31")
+eyesServo = gpio.AngularServo("BOARD33")
 # Speaker
-speaker = gpio.TonalBuzzer("BOARD22")
+speaker = gpio.TonalBuzzer("BOARD22", None, gpio.tones.Tone('A4'), 3)  # configures the buzzer to accept 7 octave span
+
+
 ########################################
 
 
 def happy_behavior():
     print("happy")
-    leftWhiteLed.on()
-    rightWhiteLed.on()
-    rightRedLed.on()
-    leftRedLed.on()
+
 
 def angry_behavior():
     print("angry")
     rightRedLed.on()
 
+
 def sleep_behavior():
     print("sleep")
+
+    # Shutdown tone
+    speaker.play(gpio.tones.Tone(midi=37))
+    sleep(0.5)
+    speaker.play(gpio.tones.Tone(midi=37))
+    sleep(0.5)
+    speaker.play(gpio.tones.Tone(midi=37))
+    sleep(0.5)
+
+    # Shut Downs:
+    speaker.off()
+
+    rightRedLed.off()
+    rightWhiteLed.off()
+    leftRedLed.off()
+    leftWhiteLed.off()
+
+    rightArmServo.value = None
+    leftArmServo.value = None
+    eyesServo.value = None
+
 
 def idle_behavior():
     print("idle")
 
 
-# Main: Executes at runtime
-if __name__ == '__main__':
-    #happy_behavior()
+def test_behavior():  # test routine, should never run in main program ~CR
+    # happy_behavior()
     for i in range(100):
         rightRedLed.on()
         leftRedLed.on()
@@ -65,7 +84,6 @@ if __name__ == '__main__':
         print(BottomIR.value)
 
         # speaker.play(gpio.tones.Tone(midi = 37)) # sample tone
-
 
         sleep(1)
         rightRedLed.off()
@@ -77,6 +95,7 @@ if __name__ == '__main__':
         sleep(1)
 
 
-
-
+# Main: Executes at runtime
+if __name__ == '__main__':
+    headButton.when_pressed = sleep_behavior()
 
