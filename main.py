@@ -54,5 +54,5 @@ def idle_behavior():
 # Main: Executes at runtime
 if __name__ == '__main__':
     happy_behavior()
-    headButton.whenHeld(angry_behavior())
+    headButton.when_held(angry_behavior())
 
