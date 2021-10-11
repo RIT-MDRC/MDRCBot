@@ -5,7 +5,7 @@
 # Description Onboard code for Raspberry Pi Running inside personality robot constructed over october break 2021
 
 import gpiozero as gpio
-import time
+from time import sleep
 import sys
 
 ########################################
