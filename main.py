@@ -64,14 +64,8 @@ if __name__ == '__main__':
         print(FrontIR.value)
         print(BottomIR.value)
 
-        speaker.play(gpio.tones.Tone(midi = 37))
-        speaker.play(gpio.tones.Tone(midi = 40))
-        speaker.play(gpio.tones.tone(midi = 42))
-        speaker.play(gpio.tones.Tone(midi = 39))
-        speaker.play(gpio.tones.Tone(midi = 35))
-        speaker.play(gpio.tones.Tone(midi = 39))
-        speaker.play(gpio.tones.Tone(midi = 40))
-        speaker.play(gpio.tones.Tone(midi = 33))
+        # speaker.play(gpio.tones.Tone(midi = 37)) # sample tone
+
 
         sleep(1)
         rightRedLed.off()
