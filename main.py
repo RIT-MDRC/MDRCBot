@@ -57,5 +57,5 @@ if __name__ == '__main__':
 
 
     happy_behavior()
-    headButton.when_held(angry_behavior())
+    headButton.when_held = angry_behavior()
 
