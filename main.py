@@ -31,7 +31,7 @@ rightWhiteLed = gpio.LED("BOARD15")
 # leftArmServo = gpio.AngularServo("BOARD31")
 # eyesServo = gpio.AngularServo("BOARD33")
 # Speaker
-# speaker = gpio.TonalBuzzer("BOARD22")
+speaker = gpio.TonalBuzzer("BOARD22")
 ########################################
 
 
@@ -63,6 +63,16 @@ if __name__ == '__main__':
         rightWhiteLed.on()
         print(FrontIR.value)
         print(BottomIR.value)
+
+        speaker.play(tone(37))
+        speaker.play(tone(40))
+        speaker.play(tone(42))
+        speaker.play(tone(39))
+        speaker.play(tone(35))
+        speaker.play(tone(39))
+        speaker.play(tone(40))
+        speaker.play(tone(33))
+
         sleep(1)
         rightRedLed.off()
         leftRedLed.off()
@@ -71,6 +81,8 @@ if __name__ == '__main__':
         print(FrontIR.value)
         print(BottomIR.value)
         sleep(1)
+
+
 
 
 
