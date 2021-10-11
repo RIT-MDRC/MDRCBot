@@ -42,6 +42,7 @@ def happy_behavior():
 
 def angry_behavior():
     print("angry")
+    rightRedLed.on()
 
 def sleep_behavior():
     print("sleep")
@@ -53,5 +54,5 @@ def idle_behavior():
 # Main: Executes at runtime
 if __name__ == '__main__':
     happy_behavior()
-    headButton.whenHeld(rightRedLed.on())
+    headButton.whenHeld(angry_behavior())
 
