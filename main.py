@@ -37,6 +37,8 @@ def happy_behavior():
     print("happy")
     leftWhiteLed.on()
     rightWhiteLed.on()
+    rightRedLed.on()
+    leftRedLed.on()
 
 def angry_behavior():
     print("angry")
@@ -51,4 +53,5 @@ def idle_behavior():
 # Main: Executes at runtime
 if __name__ == '__main__':
     happy_behavior()
+    headButton.whenHeld(rightRedLed.on())
 
