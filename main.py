@@ -58,8 +58,10 @@ if __name__ == '__main__':
     #happy_behavior()
     for i in range(100):
         rightRedLed.on()
+        leftRedLed.on()
         sleep(1)
         rightRedLed.off()
+        leftRedLed.off()
         sleep(1)
 
 
