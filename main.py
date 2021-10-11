@@ -98,6 +98,6 @@ def test_behavior():  # test routine, should never run in main program ~CR
 # Main: Executes at runtime
 if __name__ == '__main__':
     while True:
-        print(headButton.is_active)
+        print(headButton.value)
         sleep_behavior()
 
