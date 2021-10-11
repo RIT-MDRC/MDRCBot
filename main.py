@@ -8,29 +8,7 @@ import gpiozero as gpio
 import time
 import sys
 
-########################################
-### Declarations ###
 
-## Input ##
-# Button #
-headButton = gpio.Button("BOARD37")
-# IR #
-FrontIR  = gpio.MotionSensor("BOARD16")
-BottomIR = gpio.MotionSensor("BOARD18")
-
-## Output ##
-# LED #
-leftRedLed = gpio.LED("BOARD7")
-leftWhiteLed = gpio.LED("BOARD11")
-rightRedLed = gpio.LED("BOARD13")
-rightWhiteLed = gpio.LED("BOARD15")
-# Servo #
-#rightArmServo = gpio.AngularServo("BOARD29")
-#leftArmServo = gpio.AngularServo("BOARD31")
-#eyesServo = gpio.AngularServo("BOARD33")
-# Speaker
-#speaker = gpio.TonalBuzzer("BOARD22")
-########################################
 
 
 def happy_behavior():
@@ -53,6 +31,31 @@ def idle_behavior():
 
 # Main: Executes at runtime
 if __name__ == '__main__':
+    ########################################
+    ### Declarations ###
+
+    ## Input ##
+    # Button #
+    headButton = gpio.Button("BOARD37")
+    # IR #
+    FrontIR = gpio.MotionSensor("BOARD16")
+    BottomIR = gpio.MotionSensor("BOARD18")
+
+    ## Output ##
+    # LED #
+    leftRedLed = gpio.LED("BOARD7")
+    leftWhiteLed = gpio.LED("BOARD11")
+    rightRedLed = gpio.LED("BOARD13")
+    rightWhiteLed = gpio.LED("BOARD15")
+    # Servo #
+    # rightArmServo = gpio.AngularServo("BOARD29")
+    # leftArmServo = gpio.AngularServo("BOARD31")
+    # eyesServo = gpio.AngularServo("BOARD33")
+    # Speaker
+    # speaker = gpio.TonalBuzzer("BOARD22")
+    ########################################
+
+
     happy_behavior()
     headButton.when_held(angry_behavior())
 
