@@ -13,7 +13,7 @@ import sys
 
 ## Input ##
 # Button #
-headButton = gpio.InputDevice("BOARD37")
+headButton = gpio.button("BOARD37")
 # IR #
 FrontIR = gpio.MotionSensor("BOARD16")
 BottomIR = gpio.MotionSensor("BOARD18")
@@ -80,7 +80,7 @@ def idle_behavior():
     rightWhiteLed.on()
     leftWhiteLed.on()
 
-    #DECIDE: Do we want to hold a position?
+    # DECIDE: Do we want to hold a position?
     rightArmServo.value = None
     leftArmServo.value = None
     eyesServo.value = None
