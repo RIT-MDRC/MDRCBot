@@ -59,9 +59,13 @@ if __name__ == '__main__':
     for i in range(100):
         rightRedLed.on()
         leftRedLed.on()
+        leftWhiteLed.on()
+        rightWhiteLed.on()
         sleep(1)
         rightRedLed.off()
         leftRedLed.off()
+        leftWhiteLed.off()
+        rightWhiteLed.off()
         sleep(1)
 
 
