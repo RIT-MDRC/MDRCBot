@@ -61,11 +61,16 @@ if __name__ == '__main__':
         leftRedLed.on()
         leftWhiteLed.on()
         rightWhiteLed.on()
+        print(FrontIR.value)
+        print(BottomIR.value)
         sleep(1)
         rightRedLed.off()
         leftRedLed.off()
         leftWhiteLed.off()
         rightWhiteLed.off()
+        print(FrontIR.value)
+        print(BottomIR.value)
         sleep(1)
+
 
 
