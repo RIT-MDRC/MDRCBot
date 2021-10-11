@@ -57,7 +57,7 @@ def sleep_behavior():
     sleep(0.5)
 
     # Shut Downs:
-    speaker.off()
+    speaker.stop()
 
     rightRedLed.off()
     rightWhiteLed.off()
