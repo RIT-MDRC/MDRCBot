@@ -53,7 +53,7 @@ def sleep_behavior():
     sleep(0.5)
     speaker.stop()
     sleep(0.25)
-    speaker.play(gpio.tones.Tone(midi=36+12))
+    speaker.play(gpio.tones.Tone(midi=36+24))
     sleep(0.5)
     speaker.stop()
     sleep(0.25)
