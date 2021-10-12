@@ -61,6 +61,7 @@ def sleep_behavior():
     sleep(0.5)
     speaker.stop()
     sleep(0.25)
+    """
     speaker.play(gpio.tones.Tone(midi=36+12))
     sleep(0.5)
     speaker.stop()
@@ -69,6 +70,7 @@ def sleep_behavior():
     sleep(0.5)
     speaker.stop()
     sleep(0.25)
+    """
 
     # Shut Downs:
     speaker.stop()
@@ -127,4 +129,5 @@ def test_behavior():  # test routine, should never run in main program ~CR
 # Main: Executes at runtime
 if __name__ == '__main__':
     while True:
+        sleep_behavior()
 
