@@ -22,8 +22,8 @@ from time import sleep
 ### Declarations ###
 ## Globals ##
 PINOUTS = {
-    "F_IR" : "BOARD16",
-    "B_IR": "BOARD18",
+    "F_IR" : "BOARD16",     # TODO fix pinouts
+    "B_IR": "BOARD18",      # TODO fix pinouts
     "LR_LED": "BOARD7",
     "LW_LED": "BOARD11",
     "RR_LED": "BOARD13",
