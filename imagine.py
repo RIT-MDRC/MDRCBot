@@ -1,0 +1,149 @@
+""" MDRC Bot now with new and improved emotions
+
+Project Name:
+    MDRC Bot
+Authors:
+    Cameron Robinson (cvr8924@rit.edu)
+    Clinten Hopkins (cmh3586@rit.edu)
+Maintainers:
+    Clinten Hopkins (cmh3586@rit.edu)
+Last Updated:
+    10/10/21
+    4/23/21
+Description:
+    Created a version of the MDRC Bot to allow for angry emotions in addition to the pre-existing idle and wave actions
+"""
+
+from gpiozero import Servo, MotionSensor, LED
+from time import sleep
+
+########################################
+### Declarations ###
+## Globals ##
+PINOUTS = {
+    "F_IR" : "BOARD16",
+    "B_IR": "BOARD18",
+    "LR_LED": "BOARD7",
+    "LW_LED": "BOARD11",
+    "RR_LED": "BOARD13",
+    "RW_LED": "BOARD15",
+    "R_SERVO": "BOARD29",
+    "L_SERVO": "BOARD31",
+    "EYES_SERVO": "BOARD33"
+}
+
+## Input ##
+# IR #
+FrontIR = MotionSensor(PINOUTS["F_IR"])
+BottomIR = MotionSensor(PINOUTS["B_IR"])
+
+## Output ##
+# LED #
+leftRedLed = LED(PINOUTS["LR_LED"])
+leftWhiteLed = LED(PINOUTS["LW_LED"])
+rightRedLed = LED(PINOUTS["RR_LED"])
+rightWhiteLed = LED(PINOUTS["RW_LED"])
+
+# Servo #
+rightArmServo = Servo(PINOUTS["R_SERVO"])
+leftArmServo = Servo(PINOUTS["L_SERVO"])
+eyesServo = Servo(PINOUTS["EYES_SERVO"])
+
+########################################
+
+def wave_behavior() -> None:
+    """
+    Sets the eyes to white (turn off red and turn on white) and then move the right arm towards the head and back down 3
+    times
+
+    :return: None
+    """
+    # print(f"hello\n\tIR : {FrontIR.value}")
+    rightWhiteLed.on()          # Turn the eyes white
+    leftWhiteLed.on()
+    rightRedLed.off()
+    leftRedLed.off()
+
+    eyesServo.min()             # Set eyes to happy
+    eyesServo.detach()          # Dont try to hold that position
+
+    for _ in range(3):
+        rightArmServo.mid()     # Wave left
+        sleep(0.5)              # Let it sit there for a little bit
+        rightArmServo.min()     # Wave Right
+        sleep(0.5)              # Let it sit there for a little bit
+
+    rightArmServo.detach()
+
+def angry_behavior() -> None:
+    """
+    Sets the eyes to red (turn on red and turn off white) and then move both arms towards the head and back down 3 times
+
+    :return: None
+    """
+    # print(f"angry\n\tIR : {BottomIR.value}")
+
+    rightRedLed.on()            # Turn the eyes red
+    leftRedLed.on()
+    rightWhiteLed.off()
+    leftWhiteLed.off()
+
+    eyesServo.mid()             # Set eyes to happy
+    eyesServo.detach()          # Dont try to hold that setpoint
+
+    for _ in range(3):          # Loop 3 times
+        rightArmServo.mid()     # Throw right arm left
+        leftArmServo.mid()      # Throw left arm right
+        sleep(0.5)              # Let it sit there for a little bit
+        rightArmServo.min()     # Throw right arm right
+        leftArmServo.min()      # Throw left arm left
+        sleep(0.5)              # Let it sit there for a little bit
+
+    rightArmServo.detach()      # Dont try to hold those positions
+    leftArmServo.detach()
+
+def idle_behavior() -> None:
+    """
+    Basic behavior to reset the eyes (turn on the white and turn off the red) and let the arms just rest at their last
+    positions
+
+    :return: None
+    """
+    print("idle")
+
+    # Give Default Eyes
+    rightWhiteLed.on()
+    leftWhiteLed.on()
+    rightRedLed.off()
+    leftRedLed.off()
+
+    # Stop trying to go to a position
+    rightArmServo.detach()
+    leftArmServo.detach()
+    eyesServo.detach()
+
+def main() -> None:
+    """
+    Main process to loop thorough the sensors, and if a change to any of them is detected, do the respective action:
+        - Change to bottom IR sensor -> angry behavior
+        - Change to front IR sensor -> wave behavior
+        - No change -> idle behavior
+
+    :return: None
+    """
+    lastFrontIR = FrontIR.value
+    lastBotIR = BottomIR.value
+    while True:
+        if lastBotIR != BottomIR.value:
+            angry_behavior()
+            lastBotIR = BottomIR.value
+        elif lastFrontIR != FrontIR.value:
+            wave_behavior()
+            lastFrontIR = FrontIR.value
+        else:
+            idle_behavior()
+
+
+# Executes at runtime
+if __name__ == '__main__':
+    main()
