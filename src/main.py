@@ -8,7 +8,6 @@ Authors:
 Maintainers:
     Clinten Hopkins (cmh3586@rit.edu)
 Last Updated:
-    10/10/21
     4/23/21
 Description:
     Created a version of the MDRC Bot to allow for angry emotions in addition to the pre-existing idle and wave actions
