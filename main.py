@@ -1,117 +1,151 @@
-# Project Name: MDRCBot
-# Author: Cameron Robinson
-# Email: cvr8924@rit.edu
-# Date: 10/10/21
-# Description Onboard code for Raspberry Pi Running inside personality robot constructed over october break 2021
+""" MDRC Bot now with new and improved emotions
 
-import gpiozero as gpio
+Project Name:
+    MDRC Bot
+Authors:
+    Cameron Robinson (cvr8924@rit.edu)
+    Clinten Hopkins (cmh3586@rit.edu)
+Maintainers:
+    Clinten Hopkins (cmh3586@rit.edu)
+Last Updated:
+    10/10/21
+    4/23/21
+Description:
+    Created a version of the MDRC Bot to allow for angry emotions in addition to the pre-existing idle and wave actions
+Version:
+    1.1
+"""
+
+from gpiozero import Servo, MotionSensor, LED
 from time import sleep
-import sys
 
 ########################################
 ### Declarations ###
+## Globals ##
+PINOUTS = {
+    "F_IR" : "BOARD16",
+    "B_IR": "BOARD18",
+    "LR_LED": "BOARD7",
+    "LW_LED": "BOARD11",
+    "RR_LED": "BOARD13",
+    "RW_LED": "BOARD15",
+    "R_SERVO": "BOARD29",
+    "L_SERVO": "BOARD31",
+    "EYES_SERVO": "BOARD33"
+}
 
 ## Input ##
-# Button #
-headButton = gpio.Button("BOARD37")
 # IR #
-FrontIR = gpio.MotionSensor("BOARD16")
-BottomIR = gpio.MotionSensor("BOARD18")
+FrontIR = MotionSensor(PINOUTS["F_IR"])
+BottomIR = MotionSensor(PINOUTS["B_IR"])
 
 ## Output ##
 # LED #
-leftRedLed = gpio.LED("BOARD7")
-leftWhiteLed = gpio.LED("BOARD11")
-rightRedLed = gpio.LED("BOARD13")
-rightWhiteLed = gpio.LED("BOARD15")
+leftRedLed = LED(PINOUTS["LR_LED"])
+leftWhiteLed = LED(PINOUTS["LW_LED"])
+rightRedLed = LED(PINOUTS["RR_LED"])
+rightWhiteLed = LED(PINOUTS["RW_LED"])
 
 # Servo #
-rightArmServo = gpio.AngularServo("BOARD29") #90 degrees (fuzzy) ~CR
-leftArmServo = gpio.AngularServo("BOARD31")  #90 degrees (fuzzy) ~CR
-eyesServo = gpio.AngularServo("BOARD33")     #60 degrees (fuzzy) ~CR
-# Speaker
-speaker = gpio.TonalBuzzer("BOARD22", None, gpio.tones.Tone('A4'), 3)  # configures the buzzer to accept 7 octave span
-
+rightArmServo = Servo(PINOUTS["R_SERVO"])
+leftArmServo = Servo(PINOUTS["L_SERVO"])
+eyesServo = Servo(PINOUTS["EYES_SERVO"])
 
 ########################################
 
+def wave_behavior() -> None:
+    """
+    Sets the eyes to white (turn off red and turn on white) and then move the right arm towards the head and back down 3
+    times
 
-def happy_behavior():
-    print("happy")
-
-
-def angry_behavior():
-    print("angry")
-    rightRedLed.on()
-
-
-def sleep_behavior():
-    print("sleep")
-
-    # Shutdown tone
-    speaker.play(gpio.tones.Tone(midi=82))
-    sleep(0.5)
-    speaker.stop()
-    sleep(0.05)
-    speaker.play(gpio.tones.Tone(midi=72))
-    sleep(0.5)
-    speaker.stop()
-
-    # Shut Downs:
-    speaker.stop()
-
+    :return: None
+    """
+    # print(f"hello\n\tIR : {FrontIR.value}")
+    rightWhiteLed.on()          # Turn the eyes white
+    leftWhiteLed.on()
     rightRedLed.off()
-    rightWhiteLed.off()
     leftRedLed.off()
+
+    eyesServo.min()             # Set eyes to happy
+    eyesServo.detach()          # Dont try to hold that position
+
+    for _ in range(3):
+        rightArmServo.mid()     # Wave left
+        sleep(0.5)              # Let it sit there for a little bit
+        rightArmServo.min()     # Wave Right
+        sleep(0.5)              # Let it sit there for a little bit
+
+    rightArmServo.detach()
+
+def angry_behavior() -> None:
+    """
+    Sets the eyes to red (turn on red and turn off white) and then move both arms towards the head and back down 3 times
+
+    :return: None
+    """
+    # print(f"angry\n\tIR : {BottomIR.value}")
+
+    rightRedLed.on()            # Turn the eyes red
+    leftRedLed.on()
+    rightWhiteLed.off()
     leftWhiteLed.off()
 
-    rightArmServo.value = None
-    leftArmServo.value = None
-    eyesServo.value = None
+    eyesServo.mid()             # Set eyes to happy
+    eyesServo.detach()          # Dont try to hold that setpoint
 
+    for _ in range(3):          # Loop 3 times
+        rightArmServo.mid()     # Throw right arm left
+        leftArmServo.mid()      # Throw left arm right
+        sleep(0.5)              # Let it sit there for a little bit
+        rightArmServo.min()     # Throw right arm right
+        leftArmServo.min()      # Throw left arm left
+        sleep(0.5)              # Let it sit there for a little bit
 
-def idle_behavior():
+    rightArmServo.detach()      # Dont try to hold those positions
+    leftArmServo.detach()
+
+def idle_behavior() -> None:
+    """
+    Basic behavior to reset the eyes (turn on the white and turn off the red) and let the arms just rest at their last
+    positions
+
+    :return: None
+    """
     print("idle")
 
-    # Set Values
+    # Give Default Eyes
     rightWhiteLed.on()
     leftWhiteLed.on()
-
-    # DECIDE: Do we want to hold a position?
-    rightArmServo.value = None
-    leftArmServo.value = None
-    eyesServo.value = None
-
-    # Shut Downs
-    speaker.stop()
-
     rightRedLed.off()
     leftRedLed.off()
 
+    # Stop trying to go to a position
+    rightArmServo.detach()
+    leftArmServo.detach()
+    eyesServo.detach()
 
-def test_behavior():  # test routine, should never run in main program ~CR
-    # happy_behavior()
-    for i in range(100):
-        rightRedLed.on()
-        leftRedLed.on()
-        leftWhiteLed.on()
-        rightWhiteLed.on()
-        print(FrontIR.value)
-        print(BottomIR.value)
+def main() -> None:
+    """
+    Main process to loop thorough the sensors, and if a change to any of them is detected, do the respective action:
+        - Change to bottom IR sensor -> angry behavior
+        - Change to front IR sensor -> wave behavior
+        - No change -> idle behavior
 
-        # speaker.play(gpio.tones.Tone(midi = 37)) # sample tone
+    :return: None
+    """
+    lastFrontIR = FrontIR.value
+    lastBotIR = BottomIR.value
+    while True:
+        if lastBotIR != BottomIR.value:
+            angry_behavior()
+            lastBotIR = BottomIR.value
+        elif lastFrontIR != FrontIR.value:
+            wave_behavior()
+            lastFrontIR = FrontIR.value
+        else:
+            idle_behavior()
 
-        sleep(1)
-        rightRedLed.off()
-        leftRedLed.off()
-        leftWhiteLed.off()
-        rightWhiteLed.off()
-        print(FrontIR.value)
-        print(BottomIR.value)
-        sleep(1)
 
-
-# Main: Executes at runtime
+# Executes at runtime
 if __name__ == '__main__':
-    sleep_behavior()
-
+    main()
