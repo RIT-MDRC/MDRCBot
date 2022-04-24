@@ -29,6 +29,6 @@ to get into position, this is normal.
 
 ## Releases
 
-|   Date   | Version |
-|----------|---------|
-| 10/10/21 |   v1.0  |
+|   Date   |                            Version                           |
+|----------|--------------------------------------------------------------|
+| 10/10/21 | [1.0](https://github.com/RIT-MDRC/MDRCBot/releases/tag/v1.0) |
