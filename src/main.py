@@ -12,7 +12,7 @@ Last Updated:
 Description:
     Created a version of the MDRC Bot to allow for angry emotions in addition to the pre-existing idle and wave actions
 Version:
-    2.0
+    2.0.1
 """
 
 from gpiozero import Servo, MotionSensor, LED, TonalBuzzer
