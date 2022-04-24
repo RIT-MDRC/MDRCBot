@@ -7,8 +7,9 @@ considered still in development, though may still be supported depending on the 
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 1.0     | :white_check_mark: |
+| 1.0     | :x:                |
 | 1.1     | :x:                |
+| 2.0     | :white_check_mark: |
 
 ## Reporting a Vulnerability
 
