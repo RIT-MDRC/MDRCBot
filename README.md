@@ -21,15 +21,18 @@ Devon, Ryland, and Cameron's Personal Project for a robot w/ personality over th
 - Navigate to the main.py file and double click. A window should pop up with a green start button on the top bar
 - Press the start button and wait for about 5 seconds for the setup routine to complete. The servos might move a little
 to get into position, this is normal
-- The white LED's should now be powered on, and you should be able to wave and get a wave back
+- The white LEDs should now be powered on, and you should be able to wave (with a distance of 8-12 inches) and get a 
+wave back
+- You can now unplug the USB splitter and monitor and as long as it does not lose power, it should stay functional
 - Enjoy! :)
 
 ## Known Issues
 - The left eye's white LED has power issues
+- The button on top of the bot has some design issues leading to it's non-implementation
 
 ## Releases
-Please refernece SECURITY.md for the currently supported versions of this project. 
+Please reference SECURITY.md for the currently supported versions of this project. 
 
-|   Date   |                            Version                           |
-|----------|--------------------------------------------------------------|
-| 10/10/21 | [1.0](https://github.com/RIT-MDRC/MDRCBot/releases/tag/v1.0) |
+|    Date    |                             Version                            |
+|:----------:|:--------------------------------------------------------------:|
+|  10/10/21  |  [1.0](https://github.com/RIT-MDRC/MDRCBot/releases/tag/v1.0)  |
