@@ -15,22 +15,24 @@ Version:
     1.1
 """
 
-from gpiozero import Servo, MotionSensor, LED
+from gpiozero import Servo, MotionSensor, LED, TonalBuzzer
+from gpiozero.tones import Tones
 from time import sleep
 
 ########################################
 ### Declarations ###
 ## Globals ##
 PINOUTS = {
-    "F_IR" : "BOARD16",     # TODO fix pinouts
-    "B_IR": "BOARD18",      # TODO fix pinouts
+    "F_IR" : "BOARD18",
+    "B_IR": "BOARD16",
     "LR_LED": "BOARD7",
     "LW_LED": "BOARD11",
     "RR_LED": "BOARD13",
     "RW_LED": "BOARD15",
     "R_SERVO": "BOARD29",
     "L_SERVO": "BOARD31",
-    "EYES_SERVO": "BOARD33"
+    "EYES_SERVO": "BOARD33",
+    "SPEAKER": "BOARD22"
 }
 
 ## Input ##
@@ -50,6 +52,9 @@ rightArmServo = Servo(PINOUTS["R_SERVO"])
 leftArmServo = Servo(PINOUTS["L_SERVO"])
 eyesServo = Servo(PINOUTS["EYES_SERVO"])
 
+# Speaker #
+speaker = TonalBuzzer(PINOUTS["SPEAKER"], None, Tone('A4'), 3)
+
 ########################################
 
 def wave_behavior() -> None:
@@ -59,7 +64,7 @@ def wave_behavior() -> None:
 
     :return: None
     """
-    # print(f"hello\n\tIR : {FrontIR.value}")
+    # print(f"hello\n\tIR : {IR.value}")
     rightWhiteLed.on()          # Turn the eyes white
     leftWhiteLed.on()
     rightRedLed.off()
@@ -75,7 +80,6 @@ def wave_behavior() -> None:
         sleep(0.5)              # Let it sit there for a little bit
 
     rightArmServo.mid()         # Put arm back down
-    sleep(0.5)                  # Let gravity pull it all the way down
 
     rightArmServo.detach()
 
@@ -105,7 +109,6 @@ def angry_behavior() -> None:
 
     rightArmServo.mid()         # Put arms back down
     leftArmServo.mid()
-    sleep(0.5)                  # Let gravity pull it all the way down
 
     rightArmServo.detach()      # Dont try to hold those positions
     leftArmServo.detach()
