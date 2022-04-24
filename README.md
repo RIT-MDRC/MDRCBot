@@ -20,14 +20,15 @@ Devon, Ryland, and Cameron's Personal Project for a robot w/ personality over th
 - Open the file directory using the icon at the top of the screen
 - Navigate to the main.py file and double click. A window should pop up with a green start button on the top bar
 - Press the start button and wait for about 5 seconds for the setup routine to complete. The servos might move a little
-to get into position, this is normal. 
-- The white LED's should now be powered on, and you should be able to wave and get a wave back.
+to get into position, this is normal
+- The white LED's should now be powered on, and you should be able to wave and get a wave back
 - Enjoy! :)
 
 ## Known Issues
 - The left eye's white LED has power issues
 
 ## Releases
+Please refernece SECURITY.md for the currently supported versions of this project. 
 
 |   Date   |                            Version                           |
 |----------|--------------------------------------------------------------|
