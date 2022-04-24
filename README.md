@@ -36,3 +36,4 @@ Please reference SECURITY.md for the currently supported versions of this projec
 |    Date    |                             Version                            |
 |:----------:|:--------------------------------------------------------------:|
 |  10/10/21  |  [1.0](https://github.com/RIT-MDRC/MDRCBot/releases/tag/v1.0)  |
+|   4/24/21  |  [2.0](https://github.com/RIT-MDRC/MDRCBot/releases/tag/v2.0)  |
