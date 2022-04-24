@@ -68,11 +68,14 @@ def wave_behavior() -> None:
     eyesServo.min()             # Set eyes to happy
     eyesServo.detach()          # Dont try to hold that position
 
-    for _ in range(3):
-        rightArmServo.mid()     # Wave left
+    for _ in range(2):
+        rightArmServo.mid()     # Wave right
         sleep(0.5)              # Let it sit there for a little bit
-        rightArmServo.min()     # Wave Right
+        rightArmServo.min()     # Wave left
         sleep(0.5)              # Let it sit there for a little bit
+
+    rightArmServo.mid()         # Put arm back down
+    sleep(0.5)                  # Let gravity pull it all the way down
 
     rightArmServo.detach()
 
@@ -92,13 +95,17 @@ def angry_behavior() -> None:
     eyesServo.mid()             # Set eyes to happy
     eyesServo.detach()          # Dont try to hold that setpoint
 
-    for _ in range(3):          # Loop 3 times
-        rightArmServo.mid()     # Throw right arm left
-        leftArmServo.mid()      # Throw left arm right
+    for _ in range(2):          # Loop 3 times
+        rightArmServo.mid()     # Throw right arm right
+        leftArmServo.mid()      # Throw left arm left
         sleep(0.5)              # Let it sit there for a little bit
-        rightArmServo.min()     # Throw right arm right
-        leftArmServo.min()      # Throw left arm left
+        rightArmServo.min()     # Throw right arm left
+        leftArmServo.min()      # Throw left arm right
         sleep(0.5)              # Let it sit there for a little bit
+
+    rightArmServo.mid()         # Put arms back down
+    leftArmServo.mid()
+    sleep(0.5)                  # Let gravity pull it all the way down
 
     rightArmServo.detach()      # Dont try to hold those positions
     leftArmServo.detach()
