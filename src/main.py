@@ -16,7 +16,7 @@ Version:
 """
 
 from gpiozero import Servo, MotionSensor, LED, TonalBuzzer
-from gpiozero.tones import Tones
+from gpiozero.tones import Tone
 from time import sleep
 
 ########################################
@@ -53,7 +53,7 @@ leftArmServo = Servo(PINOUTS["L_SERVO"])
 eyesServo = Servo(PINOUTS["EYES_SERVO"])
 
 # Speaker #
-speaker = TonalBuzzer(PINOUTS["SPEAKER"], None, Tone('A4'), 3)
+# speaker = TonalBuzzer(PINOUTS["SPEAKER"], None, Tone('A4'), 3)
 
 ########################################
 
@@ -71,16 +71,14 @@ def wave_behavior() -> None:
     leftRedLed.off()
 
     eyesServo.min()             # Set eyes to happy
-    eyesServo.detach()          # Dont try to hold that position
 
-    for _ in range(2):
-        rightArmServo.mid()     # Wave right
-        sleep(0.5)              # Let it sit there for a little bit
+    for _ in range(3):
         rightArmServo.min()     # Wave left
         sleep(0.5)              # Let it sit there for a little bit
+        rightArmServo.mid()     # Wave right
+        sleep(0.5)              # Let it sit there for a little bit
 
-    rightArmServo.mid()         # Put arm back down
-
+    eyesServo.detach()          # Dont try to hold that position
     rightArmServo.detach()
 
 def angry_behavior() -> None:
@@ -97,19 +95,16 @@ def angry_behavior() -> None:
     leftWhiteLed.off()
 
     eyesServo.mid()             # Set eyes to happy
-    eyesServo.detach()          # Dont try to hold that setpoint
 
-    for _ in range(2):          # Loop 3 times
+    for _ in range(3):          # Loop 3 times
+        rightArmServo.min()     # Throw right arm left
+        leftArmServo.min()      # Throw left arm right
+        sleep(0.5) 
         rightArmServo.mid()     # Throw right arm right
         leftArmServo.mid()      # Throw left arm left
         sleep(0.5)              # Let it sit there for a little bit
-        rightArmServo.min()     # Throw right arm left
-        leftArmServo.min()      # Throw left arm right
-        sleep(0.5)              # Let it sit there for a little bit
 
-    rightArmServo.mid()         # Put arms back down
-    leftArmServo.mid()
-
+    eyesServo.detach()          # Dont try to hold that setpoint
     rightArmServo.detach()      # Dont try to hold those positions
     leftArmServo.detach()
 
@@ -120,16 +115,13 @@ def idle_behavior() -> None:
 
     :return: None
     """
-    print("idle")
-
-    # Give Default Eyes
-    rightWhiteLed.on()
+    
+    rightWhiteLed.on()          # Give Default Eyes
     leftWhiteLed.on()
     rightRedLed.off()
     leftRedLed.off()
-
-    # Stop trying to go to a position
-    rightArmServo.detach()
+    
+    rightArmServo.detach()      # Stop trying to go to a position
     leftArmServo.detach()
     eyesServo.detach()
 
@@ -142,8 +134,13 @@ def main() -> None:
 
     :return: None
     """
-    lastFrontIR = FrontIR.value
+    
+    leftArmServo.mid() # Put the arms down
+    rightArmServo.mid()
+    
+    lastFrontIR = FrontIR.value # Set default IR values
     lastBotIR = BottomIR.value
+    
     while True:
         if lastBotIR != BottomIR.value:
             angry_behavior()
