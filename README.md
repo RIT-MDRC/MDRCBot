@@ -21,22 +21,30 @@ wave back
 - Enjoy! :)
 
 ## Troubleshooting
+Have you tried turning it off and back on again?
+
+### Common Issues:
+- [Powered on but not moving](#no-movement)
+
+### No movement
 If the bot is powered but nothing is working, plug in a keyboard and monitor to try to manually initiate the program.
 
 When you plug in the periferals, you should see a terminal appear on your screen, assuming the bot is still powered. Once the screen
 stabalizes, ie. you see a blinking cursor at the bottom of the screen, you should be able to run `sudo python MDRCBot/src/main.py`. Once
-this runs, you should see
+this runs, you should see:
 
 ```
 Starting...
 Setup Complete...
 ```
  
- and if you wave to it you should see
+ and if you wave to it you should see:
  
  ```
  Waving...
  ```
+you can now unplug the perifierals and setup the bot for presenting. DO NOT TURN IT OFF at this point. A reboot will NOT automatically
+start the program again. 
 
 ## Known Issues
 - The left eye's white LED has power issues
