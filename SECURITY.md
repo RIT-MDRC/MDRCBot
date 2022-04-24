@@ -5,11 +5,11 @@
 The most tested version of the code is going to be the most recent x.0 release. Any other release is going to be
 considered still in development, though may still be supported depending on the level of testing.
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 1.0     | :x:                |
-| 1.1     | :x:                |
-| 2.0     | :white_check_mark: |
+| Version              | Supported          |
+|:--------------------:|--------------------|
+| 1.0                  | :x:                |
+| 1.1 (UNRELEASED)     | :x:                |
+| 2.0                  | :white_check_mark: |
 
 ## Reporting a Vulnerability
 
