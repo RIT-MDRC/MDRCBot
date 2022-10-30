@@ -1,6 +1,6 @@
 # Project Name: MDRC Bot
 
-## Author(s)
+## Team Members(s)
 - Cameron Robinson (cvr8924@rit.edu)
 - Ryland Charron (rjc3002@rit.edu)
 - Devon Chicchi (dtc3416@rit.edu)
@@ -10,11 +10,12 @@
 - Clinten Hopkins (cmh3586@rit.edu)
 
 ## Description
-Devon, Ryland, and Cameron's Personal Project for a robot w/ personality over the 2021 October break.
+Devon, Ryland, and Cameron's Personal Project for a robot w/ personality over
+the 2021 October break.
 
 ## How To Use
 - Power on (Once powered on, the boot up process takes a while. If it takes more than 60 seconds, see the troubleshooting section)
-    - Plug the power from MDRC Bot into the wall and flip the switch to the on position
+- Plug the power from MDRC Bot into the wall and flip the switch to the on position
 - The white LEDs should now be powered on, and you should be able to wave (with a distance of 8-12 inches) and get a 
 wave back
 - You can now unplug the USB splitter and monitor and as long as it does not lose power, it should stay functional
@@ -25,6 +26,7 @@ Have you tried turning it off and back on again?
 
 ### Common Issues:
 - [Powered on but not moving](#no-movement)
+- [The light(s) are not working](#no-light)
 
 ### No movement
 If the bot is powered but nothing is working, plug in a keyboard and monitor to try to manually initiate the program.
@@ -37,21 +39,26 @@ this runs, you should see:
 Starting...
 Setup Complete...
 ```
- 
- and if you wave to it you should see:
- 
- ```
- Waving...
- ```
-you can now unplug the perifierals and setup the bot for presenting. DO NOT TURN IT OFF at this point. A reboot will NOT automatically
-start the program again. 
+and if you wave to it you should see:
+```
+Waving...
+```
+you can now unplug the perifierals and setup the bot for presenting. DO NOT 
+TURN IT OFF at this point. A reboot will NOT automatically start the program 
+again. 
+
+### No Light
+The lights are sometimes not able to draw enough power, which usually is
+exaggerated most when movment is happening. This is known and is going to be fixed on the next hardware update.
 
 ## Known Issues
 - The left eye's white LED has power issues
 - The button on top of the bot has some design issues leading to it's non-implementation
+- Due to RIT switching to eduroam, the wifi is broken. TBH I don't wanna fix it, so probably wont.
 
 ## Releases
-Please reference SECURITY.md for the currently supported versions of this project. 
+Please reference SECURITY.md for the currently supported versions of this 
+project. 
 
 |    Date    |                               Version                              |
 |:----------:|:------------------------------------------------------------------:|
