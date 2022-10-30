@@ -23,16 +23,15 @@ from time import sleep
 ### Declarations ###
 ## Globals ##
 PINOUTS = {
-    "F_IR" : "BOARD18",
-    "B_IR": "BOARD16",
-    "LR_LED": "BOARD7",
-    "LW_LED": "BOARD11",
-    "RR_LED": "BOARD13",
-    "RW_LED": "BOARD15",
-    "R_SERVO": "BOARD29",
-    "L_SERVO": "BOARD31",
-    "EYES_SERVO": "BOARD33",
-    "SPEAKER": "BOARD22"
+    "F_IR" : "BOARD16",
+    "B_IR": "BOARD20",
+    "LR_LED": "BOARD14",
+    "LW_LED": "BOARD15",
+    "RR_LED": "BOARD7",
+    "RW_LED": "BOARD8",
+    "R_SERVO": "BOARD24",
+    "L_SERVO": "BOARD18",
+    "SPEAKER": "BOARD21"
 }
 
 ## Input ##
@@ -59,12 +58,11 @@ eyesServo = Servo(PINOUTS["EYES_SERVO"])
 
 def wave_behavior() -> None:
     """
-    Sets the eyes to white (turn off red and turn on white) and then move the right arm towards the head and back down 3
-    times
+    Sets the eyes to white (turn off red and turn on white) and then move the 
+    right arm towards the head and back down 3 times
 
     :return: None
     """
-    # print(f"hello\n\tIR : {IR.value}")
     rightWhiteLed.on()          # Turn the eyes white
     leftWhiteLed.on()
     rightRedLed.off()
@@ -83,12 +81,11 @@ def wave_behavior() -> None:
 
 def angry_behavior() -> None:
     """
-    Sets the eyes to red (turn on red and turn off white) and then move both arms towards the head and back down 3 times
+    Sets the eyes to red (turn on red and turn off white) and then move both 
+    arms towards the head and back down 3 times
 
     :return: None
     """
-    # print(f"angry\n\tIR : {BottomIR.value}")
-
     rightRedLed.on()            # Turn the eyes red
     leftRedLed.on()
     rightWhiteLed.off()
@@ -110,8 +107,8 @@ def angry_behavior() -> None:
 
 def idle_behavior() -> None:
     """
-    Basic behavior to reset the eyes (turn on the white and turn off the red) and let the arms just rest at their last
-    positions
+    Basic behavior to reset the eyes (turn on the white and turn off the red) 
+    and let the arms just rest at their last positions
 
     :return: None
     """
